@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 24
     buildToolsVersion '24.0.3'
@@ -12,6 +14,11 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    dataBinding {
+        enabled true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -25,10 +32,39 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:appcompat-v7:+'
     testCompile 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    def dependencies = rootProject.ext.dependencies
+    compile dependencies.supportDesign
+    compile dependencies.supportRecyclerview
+    compile dependencies.supportCardView
+    compile dependencies.supportMultidex
+    //
+    compile dependencies.rxJava
+    compile dependencies.rxAndroid
+    compile dependencies.gson
+    compile dependencies.retrofit
+    compile dependencies.retrofitRxjavaAdapter
+    compile dependencies.retrofitGsonConverter
+    compile dependencies.okhttp3
+    compile dependencies.okhttpLoggingInterceptor
+    compile dependencies.glide
+    compile dependencies.dagger
+    kapt dependencies.daggerCompiler
+    provided dependencies.javaxAnnotation
+    compile dependencies.kotlinStdlib
+    compile dependencies.kotlinReflect
+    //deep link
+    compile 'com.airbnb:deeplinkdispatch:2.0.1'
+    kapt 'com.airbnb:deeplinkdispatch-processor:2.0.1'
+    compile 'com.github.githubwing:ByeBurger:1.2.2'
+    kapt 'com.android.databinding:compiler:1.0-rc5'
 }
 repositories {
     mavenCentral()
+}
+
+kapt {
+    generateStubs = true
 }

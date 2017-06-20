@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import base.BaseBindingFragment
 import com.wingsofts.gankclient.bean.FuckGoods
 import mvp.contract.FuckGoodsContract
+import javax.inject.Inject
 import kotlin.reflect.jvm.internal.impl.javax.inject.Inject
 
 /**
@@ -26,5 +27,5 @@ class AndroidFragment:BaseBindingFragment<>,FuckGoodsContract.View {
     lateinit var mAdapter:FuckGoodsAdapter
     var mPage=1
 
-    @Inject fun createDataBinding(inflater: LayoutInflater?,container:ViewGroup?,savedInstanceState:Bundle?):v
+    @Inject fun createDataBinding(inflater: LayoutInflater?, container:ViewGroup?, savedInstanceState:Bundle?):
 }
